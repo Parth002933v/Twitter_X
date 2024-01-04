@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/core/core.dart';
-import 'package:twitter_x_three/features/profile/components/components.dart';
-import 'package:twitter_x_three/features/tweet/components/components.dart';
-import 'package:twitter_x_three/model/model.dart';
-import 'package:twitter_x_three/theme/theme.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/core/core.dart';
+import 'package:twitter_x/features/profile/components/components.dart';
+import 'package:twitter_x/features/tweet/components/components.dart';
+import 'package:twitter_x/model/model.dart';
+import 'package:twitter_x/theme/theme.dart';
 
 class TweetDetail extends ConsumerWidget {
   const TweetDetail({
@@ -82,12 +82,16 @@ class TweetDetail extends ConsumerWidget {
                 style: Theme.of(context).textTheme.bodyLarge!),
             if (tweetData.imageLinks.isNotEmpty)
               Container(
+                key: UniqueKey(),
                 margin: EdgeInsets.only(top: 10.h),
                 decoration: BoxDecoration(
                   border: Border.all(width: 0.5, color: Colors.grey),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: ImageGrid(images: tweetData.imageLinks),
+                child: ImageGrid(
+                  images: tweetData.imageLinks,
+                  heroTag: 'tweetDetail',
+                ),
               ),
             SizedBox(height: 8.h),
             Row(

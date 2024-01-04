@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_x_three/theme/theme.dart';
+import 'package:twitter_x/theme/theme.dart';
 
 ThemeData darkTheme() {
   return ThemeData.dark(useMaterial3: true).copyWith(

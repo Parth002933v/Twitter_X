@@ -1,12 +1,14 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:twitter_x_three/constants/constants.dart';
-import 'package:twitter_x_three/features/profile/view/profile_view.dart';
-import 'package:twitter_x_three/main.dart';
-import 'package:twitter_x_three/model/user_model.dart';
+import 'package:twitter_x/constants/constants.dart';
+import 'package:twitter_x/features/profile/view/profile_view.dart';
+import 'package:twitter_x/features/tweet/view/tweet_image_view.dart';
+import 'package:twitter_x/main.dart';
 
 SizedBox svgIcon({
   String icon = AssetsConstants.google,
@@ -97,10 +99,11 @@ Widget AppNetworkImage({
         );
 }
 
-ClipRRect ImageGrid({required List<String> images}) {
+ClipRRect ImageGrid({required List<String> images, required String heroTag}) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(10),
     child: GridView.builder(
+      key: UniqueKey(),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: images.length,
@@ -110,15 +113,26 @@ ClipRRect ImageGrid({required List<String> images}) {
         crossAxisSpacing: 3,
       ),
       itemBuilder: (context, index) {
-        return CachedNetworkImage(
-          maxHeightDiskCache: 300.w.toInt(),
-          maxWidthDiskCache: 300.w.toInt(),
-          filterQuality: FilterQuality.none,
-          fit: BoxFit.cover,
-          errorWidget: (context, url, error) {
-            return svgIcon(icon: AssetsConstants.profile);
+        String uniqueTag = '${heroTag}_image_$index';
+        return InkWell(
+          onTap: () async {
+            Navigator.of(context).push(
+              TweetImageView.route(image: images[index], heroTag: uniqueTag),
+            );
           },
-          imageUrl: images[index],
+          child: Hero(
+            tag: uniqueTag,
+            child: CachedNetworkImage(
+              maxHeightDiskCache: 350.w.toInt(),
+              maxWidthDiskCache: 350.w.toInt(),
+              filterQuality: FilterQuality.none,
+              fit: BoxFit.cover,
+              errorWidget: (context, url, error) {
+                return svgIcon(icon: AssetsConstants.profile);
+              },
+              imageUrl: images[index],
+            ),
+          ),
         );
       },
     ),

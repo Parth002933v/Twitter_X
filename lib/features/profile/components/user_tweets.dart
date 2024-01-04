@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/features/auth/controller/auth_controller.dart';
-import 'package:twitter_x_three/features/tweet/components/retweeted_card.dart';
-import 'package:twitter_x_three/features/tweet/components/tweet_card.dart';
-import 'package:twitter_x_three/model/model.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/features/auth/controller/auth_controller.dart';
+import 'package:twitter_x/features/tweet/components/retweeted_card.dart';
+import 'package:twitter_x/features/tweet/components/tweet_card.dart';
+import 'package:twitter_x/model/model.dart';
 
 class UserTweet extends ConsumerWidget {
   final AsyncValue<List<GetTweetModel>> userTweet;
@@ -28,11 +28,13 @@ class UserTweet extends ConsumerWidget {
 
                   return tweet.retweetOf != null
                       ? RetweetedTweetCard(
+                          screenForHeroTag: 'ProfileReTweet',
                           tweet: tweet,
                           canTapAvatar: false,
                           currentUser: _currentUserP!,
                         )
                       : TweetCard(
+                          screenForHeroTag: 'ProfileTweet',
                           tweet: tweet,
                           canTapAvatar: false,
                           currentUser: _currentUserP!,

@@ -2,13 +2,13 @@ import 'dart:io' as io;
 import 'package:appwrite/models.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart' as pick;
-import 'package:twitter_x_three/APIs/api.dart';
-import 'package:twitter_x_three/core/core.dart';
-import 'package:twitter_x_three/features/application/application.dart';
-import 'package:twitter_x_three/features/auth/view/signUp_dashboard_view.dart';
-import 'package:twitter_x_three/features/auth/view/sign_in_view/sign_In_view.dart';
-import 'package:twitter_x_three/main.dart';
-import 'package:twitter_x_three/model/model.dart';
+import 'package:twitter_x/APIs/api.dart';
+import 'package:twitter_x/core/core.dart';
+import 'package:twitter_x/features/application/application.dart';
+import 'package:twitter_x/features/auth/view/signUp_dashboard_view.dart';
+import 'package:twitter_x/features/auth/view/sign_in_view/sign_In_view.dart';
+import 'package:twitter_x/main.dart';
+import 'package:twitter_x/model/model.dart';
 
 final authControllerProvider =
     StateNotifierProvider<_AuthControllerNotifier, bool>((ref) {

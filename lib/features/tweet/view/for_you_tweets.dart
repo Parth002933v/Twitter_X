@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/features/auth/controller/auth_controller.dart';
-import 'package:twitter_x_three/features/tweet/components/components.dart';
-import 'package:twitter_x_three/features/tweet/controller/tweet_controller.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/features/auth/controller/auth_controller.dart';
+import 'package:twitter_x/features/tweet/components/components.dart';
+import 'package:twitter_x/features/tweet/controller/tweet_controller.dart';
 
 class ForYou extends ConsumerWidget {
   const ForYou({super.key});
@@ -40,10 +40,14 @@ class ForYou extends ConsumerWidget {
 
                                   return tweet.retweetOf != null
                                       ? RetweetedTweetCard(
+                                          screenForHeroTag:
+                                              'forYouReTweet${index}',
                                           tweet: tweet,
                                           currentUser: currentUserP,
                                         )
                                       : TweetCard(
+                                          screenForHeroTag:
+                                              'forYouTweet${index}',
                                           tweet: tweet,
                                           currentUser: currentUserP,
                                           ref: ref,

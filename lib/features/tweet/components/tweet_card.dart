@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:like_button/like_button.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/constants/constants.dart';
-import 'package:twitter_x_three/features/tweet/components/components.dart';
-import 'package:twitter_x_three/features/tweet/controller/tweet_controller.dart';
-import 'package:twitter_x_three/features/tweet/view/tweet_detail_view.dart';
-import 'package:twitter_x_three/model/model.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/constants/constants.dart';
+import 'package:twitter_x/features/tweet/components/components.dart';
+import 'package:twitter_x/features/tweet/controller/tweet_controller.dart';
+import 'package:twitter_x/features/tweet/view/tweet_detail_view.dart';
+import 'package:twitter_x/model/model.dart';
 
 class TweetCard extends StatelessWidget {
   const TweetCard({
@@ -17,11 +17,13 @@ class TweetCard extends StatelessWidget {
     required this.currentUser,
     required this.ref,
     this.canTapAvatar = true,
+    required this.screenForHeroTag,
   });
   final GetTweetModel tweet;
   final UserModel currentUser;
   final WidgetRef ref;
   final bool canTapAvatar;
+  final String screenForHeroTag;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -85,7 +87,10 @@ class TweetCard extends StatelessWidget {
                             border: Border.all(width: 0.5, color: Colors.grey),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: ImageGrid(images: tweet.imageLinks),
+                          child: ImageGrid(
+                            images: tweet.imageLinks,
+                            heroTag: screenForHeroTag,
+                          ),
                         ),
                       SizedBox(height: 10.h),
                       Row(

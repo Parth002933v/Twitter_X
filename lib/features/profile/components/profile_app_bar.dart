@@ -2,13 +2,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/constants/constants.dart';
-import 'package:twitter_x_three/core/core.dart';
-import 'package:twitter_x_three/features/auth/controller/auth_controller.dart';
-import 'package:twitter_x_three/features/profile/components/components.dart';
-import 'package:twitter_x_three/main.dart';
-import 'package:twitter_x_three/model/model.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/constants/constants.dart';
+import 'package:twitter_x/core/core.dart';
+import 'package:twitter_x/features/auth/controller/auth_controller.dart';
+import 'package:twitter_x/features/profile/components/components.dart';
+import 'package:twitter_x/main.dart';
+import 'package:twitter_x/model/model.dart';
 
 class CustomSliverAppbar extends SliverPersistentHeaderDelegate {
   final double expandedHegth;

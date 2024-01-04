@@ -3,8 +3,8 @@ import 'package:image_picker/image_picker.dart' as pick;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/constants/constants.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/constants/constants.dart';
 
 Widget editBanner({
   required String bannerPic,

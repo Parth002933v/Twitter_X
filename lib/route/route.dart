@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_x_three/constants/constants.dart';
-import 'package:twitter_x_three/features/application/view/home_view/view/home_view.dart';
-import 'package:twitter_x_three/features/auth/view/signUp_dashboard_view.dart';
-import 'package:twitter_x_three/features/auth/view/sign_in_view/sign_In_view.dart';
-import 'package:twitter_x_three/features/auth/view/sign_up_view/signup_view.dart';
+import 'package:twitter_x/constants/constants.dart';
+import 'package:twitter_x/features/application/view/home_view/view/home_view.dart';
+import 'package:twitter_x/features/auth/view/signUp_dashboard_view.dart';
+import 'package:twitter_x/features/auth/view/sign_in_view/sign_In_view.dart';
+import 'package:twitter_x/features/auth/view/sign_up_view/signup_view.dart';
 
 class RouteModel {
   final String path;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twitter_x_three/common/common.dart';
+import 'package:twitter_x/common/common.dart';
 
 class ConfirmSignin extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => ConfirmSignin());

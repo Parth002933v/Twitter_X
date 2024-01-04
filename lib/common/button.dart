@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twitter_x_three/common/app_image.dart';
-import 'package:twitter_x_three/common/loading_page.dart';
-import 'package:twitter_x_three/constants/assets_constants.dart';
+import 'package:twitter_x/common/app_image.dart';
+import 'package:twitter_x/common/loading_page.dart';
+import 'package:twitter_x/constants/assets_constants.dart';
 
 import '../constants/constants.dart';
 

@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:twitter_x_three/constants/constants.dart';
-import 'package:twitter_x_three/core/core.dart';
+import 'package:twitter_x/constants/constants.dart';
+import 'package:twitter_x/core/core.dart';
 
 final storageAPIProvider = Provider((ref) {
   final storage = ref.watch(storageProvider);
@@ -50,6 +50,13 @@ class StorageAPI {
       return Right(AppWriteConstants.getImageURL(res.$id));
     } catch (e, s) {
       return Left(Failure(e.toString(), s.toString()));
+    }
+  }
+
+  void deleteImage({required List<String> fileIds}) async {
+    for (final fileId in fileIds) {
+      await _storage.deleteFile(
+          bucketId: AppWriteConstants.storageID, fileId: fileId);
     }
   }
 }

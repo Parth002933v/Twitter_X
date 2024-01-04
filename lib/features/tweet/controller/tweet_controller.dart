@@ -1,12 +1,12 @@
 import 'dart:io' as io;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:twitter_x_three/APIs/api.dart';
-import 'package:twitter_x_three/core/core.dart';
-import 'package:twitter_x_three/features/application/application.dart';
-import 'package:twitter_x_three/features/application/view/home_view/view/home_view.dart';
-import 'package:twitter_x_three/features/auth/controller/auth_controller.dart';
-import 'package:twitter_x_three/main.dart';
-import 'package:twitter_x_three/model/model.dart';
+import 'package:twitter_x/APIs/api.dart';
+import 'package:twitter_x/core/core.dart';
+import 'package:twitter_x/features/application/application.dart';
+import 'package:twitter_x/features/application/view/home_view/view/home_view.dart';
+import 'package:twitter_x/features/auth/controller/auth_controller.dart';
+import 'package:twitter_x/main.dart';
+import 'package:twitter_x/model/model.dart';
 
 final tweetListForYouProvider = FutureProvider((ref) async {
   final list = ref.watch(tweetControllerProvider.notifier);
@@ -49,12 +49,17 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
         _storageAPI = storageAPI,
         super(false);
 
-  Future<void> deleteTweet({required String documentId}) async {
+  Future<void> deleteTweet({
+    required String documentId,
+    required GetTweetModel currentTweet,
+  }) async {
     final res = await _tweetAPI.deleteTweet(documentId: documentId);
-
     res.fold(
       (l) => UshowToast(text: l.error),
-      (r) => UshowToast(text: "Tweet has been deleted"),
+      (r) {
+        UshowToast(text: "Tweet has been deleted");
+        _storageAPI.deleteImage(fileIds: currentTweet.imageLinks);
+      },
     );
   }
 

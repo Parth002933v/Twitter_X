@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/features/auth/controller/auth_controller.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/features/auth/controller/auth_controller.dart';
 
 class SignInView extends StatefulWidget {
   // static route() => MaterialPageRoute(builder: (context) => SignInView());

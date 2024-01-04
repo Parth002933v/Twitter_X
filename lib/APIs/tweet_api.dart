@@ -4,9 +4,9 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:twitter_x_three/constants/constants.dart';
-import 'package:twitter_x_three/core/core.dart';
-import 'package:twitter_x_three/model/model.dart';
+import 'package:twitter_x/constants/constants.dart';
+import 'package:twitter_x/core/core.dart';
+import 'package:twitter_x/model/model.dart';
 
 final tweetAPIProvider = Provider((ref) {
   final database = ref.watch(databaseProvider);

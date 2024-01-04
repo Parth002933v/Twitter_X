@@ -2,7 +2,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:twitter_x_three/core/core.dart';
+import 'package:twitter_x/core/core.dart';
 
 final authAPIProvider = Provider<AuthAPI>((ref) {
   final account = ref.watch(accountProvider);

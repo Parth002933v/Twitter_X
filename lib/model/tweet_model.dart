@@ -1,4 +1,4 @@
-import 'package:twitter_x_three/core/core.dart';
+import 'package:twitter_x/core/core.dart';
 
 class CreateTweetModel {
   final String tweetID;

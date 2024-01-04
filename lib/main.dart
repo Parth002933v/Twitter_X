@@ -1,14 +1,13 @@
 // keytool -list -v -keystore C:\Users\pp542\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/features/application/application.dart';
-import 'package:twitter_x_three/features/auth/controller/auth_controller.dart';
-import 'package:twitter_x_three/features/auth/view/signUp_dashboard_view.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/features/application/application.dart';
+import 'package:twitter_x/features/auth/controller/auth_controller.dart';
+import 'package:twitter_x/features/auth/view/signUp_dashboard_view.dart';
 
 import 'theme/theme_data.dart';
 

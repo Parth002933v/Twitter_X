@@ -2,13 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/constants/constants.dart';
-import 'package:twitter_x_three/features/auth/controller/auth_controller.dart';
-import 'package:twitter_x_three/features/auth/view/sign_in_view/sign_In_view.dart';
-import 'package:twitter_x_three/features/auth/view/sign_up_view/signup_view.dart';
-import 'package:twitter_x_three/features/auth/widgtes/or_divider_widgte.dart';
-import 'package:twitter_x_three/theme/theme.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/constants/constants.dart';
+import 'package:twitter_x/features/auth/controller/auth_controller.dart';
+import 'package:twitter_x/features/auth/view/sign_in_view/sign_In_view.dart';
+import 'package:twitter_x/features/auth/view/sign_up_view/signup_view.dart';
+import 'package:twitter_x/features/auth/widgtes/or_divider_widgte.dart';
+import 'package:twitter_x/theme/theme.dart';
 
 class SignUpOnboardView extends ConsumerWidget {
   static route() =>

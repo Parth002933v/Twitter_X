@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/core/core.dart';
-import 'package:twitter_x_three/features/profile/view/edit_profile.dart';
-import 'package:twitter_x_three/model/model.dart';
-import 'package:twitter_x_three/theme/theme.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/core/core.dart';
+import 'package:twitter_x/features/profile/view/edit_profile.dart';
+import 'package:twitter_x/model/model.dart';
+import 'package:twitter_x/theme/theme.dart';
 
 Column userDetail({
   required BuildContext context,

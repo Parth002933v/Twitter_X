@@ -3,12 +3,12 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/src/consumer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/features/tweet/controller/tweet_controller.dart';
-import 'package:twitter_x_three/model/tweet_model.dart';
-import 'package:twitter_x_three/theme/theme.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/features/tweet/controller/tweet_controller.dart';
+import 'package:twitter_x/model/tweet_model.dart';
+import 'package:twitter_x/theme/theme.dart';
 
-import 'package:twitter_x_three/constants/constants.dart';
+import 'package:twitter_x/constants/constants.dart';
 
 AppBottomSheet({
   required BuildContext context,
@@ -54,9 +54,10 @@ AppBottomSheet({
               onPressed: () {
                 Navigator.of(dialogContext).pop();
 
-                ref
-                    .read(tweetControllerProvider.notifier)
-                    .deleteTweet(documentId: currentTweet.id);
+                ref.read(tweetControllerProvider.notifier).deleteTweet(
+                      documentId: currentTweet.id,
+                      currentTweet: currentTweet,
+                    );
                 Navigator.of(dialogContext).pop();
               },
             ),

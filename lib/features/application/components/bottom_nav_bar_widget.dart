@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/constants/constants.dart';
-import 'package:twitter_x_three/features/application/controller/application_controller.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/constants/constants.dart';
+import 'package:twitter_x/features/application/controller/application_controller.dart';
 
 BottomNavigationBar applicationBottomNavigationBar(
     int BottomNavBarP, WidgetRef ref) {

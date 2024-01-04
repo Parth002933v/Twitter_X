@@ -3,23 +3,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:like_button/like_button.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:twitter_x_three/common/common.dart';
-import 'package:twitter_x_three/constants/constants.dart';
-import 'package:twitter_x_three/features/tweet/components/components.dart';
-import 'package:twitter_x_three/features/tweet/controller/tweet_controller.dart';
-import 'package:twitter_x_three/features/tweet/view/tweet_detail_view.dart';
-import 'package:twitter_x_three/model/model.dart';
+import 'package:twitter_x/common/common.dart';
+import 'package:twitter_x/constants/constants.dart';
+import 'package:twitter_x/features/tweet/components/components.dart';
+import 'package:twitter_x/features/tweet/controller/tweet_controller.dart';
+import 'package:twitter_x/features/tweet/view/tweet_detail_view.dart';
+import 'package:twitter_x/model/model.dart';
 
 @immutable
 class RetweetedTweetCard extends ConsumerStatefulWidget {
   final GetTweetModel tweet;
   final UserModel currentUser;
   final bool canTapAvatar;
+  final String screenForHeroTag;
   const RetweetedTweetCard({
     super.key,
     required this.tweet,
     required this.currentUser,
     this.canTapAvatar = true,
+    required this.screenForHeroTag,
   });
 
   @override
@@ -126,7 +128,10 @@ class _RetweetedTweetCardState extends ConsumerState<RetweetedTweetCard> {
                                   Border.all(width: 0.5, color: Colors.grey),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: ImageGrid(images: widget.tweet.imageLinks),
+                            child: ImageGrid(
+                              images: widget.tweet.imageLinks,
+                              heroTag: "${widget.screenForHeroTag}",
+                            ),
                           ),
                         SizedBox(height: 10.h),
                         Row(
@@ -267,7 +272,9 @@ class _RetweetedTweetCardState extends ConsumerState<RetweetedTweetCard> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: ImageGrid(
-                              images: widget.tweet.retweetOf!.imageLinks),
+                            images: widget.tweet.retweetOf!.imageLinks,
+                            heroTag: "${widget.screenForHeroTag}2",
+                          ),
                         ),
                       const SizedBox(height: 10),
                       Row(
