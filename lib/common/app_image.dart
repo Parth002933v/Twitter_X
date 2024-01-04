@@ -9,6 +9,7 @@ import 'package:twitter_x/constants/constants.dart';
 import 'package:twitter_x/features/profile/view/profile_view.dart';
 import 'package:twitter_x/features/tweet/view/tweet_image_view.dart';
 import 'package:twitter_x/main.dart';
+import 'package:twitter_x/model/tweet_model.dart';
 
 SizedBox svgIcon({
   String icon = AssetsConstants.google,
@@ -82,7 +83,6 @@ Widget circularNetworkImage(
 
 Widget AppNetworkImage({
   required String url,
-  double? radius,
   int? maxWidthDiskCache,
   int? maxHeightDiskCache,
 }) {
@@ -91,15 +91,19 @@ Widget AppNetworkImage({
       : CachedNetworkImage(
           imageUrl: url,
           fit: BoxFit.cover,
-          maxHeightDiskCache: maxHeightDiskCache,
-          maxWidthDiskCache: maxWidthDiskCache,
+          // maxHeightDiskCache: maxHeightDiskCache,
+          // maxWidthDiskCache: maxWidthDiskCache,
           errorWidget: (context, url, error) {
             return svgIcon(icon: AssetsConstants.profile);
           },
         );
 }
 
-ClipRRect ImageGrid({required List<String> images, required String heroTag}) {
+ClipRRect ImageGrid({
+  required List<String> images,
+  required String heroTag,
+  required GetTweetModel tweetData,
+}) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(10),
     child: GridView.builder(
@@ -117,14 +121,18 @@ ClipRRect ImageGrid({required List<String> images, required String heroTag}) {
         return InkWell(
           onTap: () async {
             Navigator.of(context).push(
-              TweetImageView.route(image: images[index], heroTag: uniqueTag),
+              TweetImageView.route(
+                image: images[index],
+                heroTag: uniqueTag,
+                tweetData: tweetData,
+              ),
             );
           },
           child: Hero(
             tag: uniqueTag,
             child: CachedNetworkImage(
-              maxHeightDiskCache: 350.w.toInt(),
-              maxWidthDiskCache: 350.w.toInt(),
+              // maxHeightDiskCache: 350.w.toInt(),
+              // maxWidthDiskCache: 350.w.toInt(),
               filterQuality: FilterQuality.none,
               fit: BoxFit.cover,
               errorWidget: (context, url, error) {

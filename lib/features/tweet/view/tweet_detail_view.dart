@@ -91,6 +91,7 @@ class TweetDetail extends ConsumerWidget {
                 child: ImageGrid(
                   images: tweetData.imageLinks,
                   heroTag: 'tweetDetail',
+                  tweetData: tweetData,
                 ),
               ),
             SizedBox(height: 8.h),

@@ -17,7 +17,9 @@ void main() {
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarContrastEnforced: false,
-    systemNavigationBarColor: Colors.black,
+    systemNavigationBarColor: Colors.transparent,
+    statusBarColor: Colors.transparent,
+    systemStatusBarContrastEnforced: false,
   ));
 
   runApp(const ProviderScope(child: MyApp()));
@@ -38,11 +40,11 @@ class MyApp extends ConsumerWidget {
         title: 'Twitter X',
         navigatorKey: nav,
         themeMode: ThemeMode.dark,
-        darkTheme: darkTheme(),
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        darkTheme: TTheme.DarkTheme,
+        // theme: ThemeData(
+        //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        //   useMaterial3: true,
+        // ),
         home: ref.watch(currentUserAccountProvider).when(
           data: (data) {
             // print('data');

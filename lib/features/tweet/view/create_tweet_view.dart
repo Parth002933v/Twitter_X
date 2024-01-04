@@ -201,6 +201,7 @@ class _TweetViewState extends ConsumerState<CreateTweetView> {
                                 ImageGrid(
                                   images: widget.tweet!.imageLinks,
                                   heroTag: 'CreateTweet',
+                                  tweetData: widget.tweet!,
                                 )
                               ],
                             ),

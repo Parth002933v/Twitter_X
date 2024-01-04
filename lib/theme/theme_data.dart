@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:twitter_x/theme/theme.dart';
 
-ThemeData darkTheme() {
-  return ThemeData.dark(useMaterial3: true).copyWith(
+class TTheme {
+  static final ThemeData DarkTheme =
+      ThemeData.dark(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: PallateColor.BackGoundColor,
     appBarTheme: const AppBarTheme(
       backgroundColor: PallateColor.BackGoundColor,

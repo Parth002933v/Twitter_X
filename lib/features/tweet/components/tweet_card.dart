@@ -88,6 +88,7 @@ class TweetCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: ImageGrid(
+                            tweetData: tweet,
                             images: tweet.imageLinks,
                             heroTag: screenForHeroTag,
                           ),

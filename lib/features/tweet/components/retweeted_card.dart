@@ -130,6 +130,7 @@ class _RetweetedTweetCardState extends ConsumerState<RetweetedTweetCard> {
                             ),
                             child: ImageGrid(
                               images: widget.tweet.imageLinks,
+                              tweetData: widget.tweet,
                               heroTag: "${widget.screenForHeroTag}",
                             ),
                           ),
@@ -274,6 +275,7 @@ class _RetweetedTweetCardState extends ConsumerState<RetweetedTweetCard> {
                           child: ImageGrid(
                             images: widget.tweet.retweetOf!.imageLinks,
                             heroTag: "${widget.screenForHeroTag}2",
+                            tweetData: widget.tweet.retweetOf!,
                           ),
                         ),
                       const SizedBox(height: 10),

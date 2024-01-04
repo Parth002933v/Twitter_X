@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../common/common.dart';
 
-Widget postResponseIcon(
-    {required String icon,
-    String? text,
-    required BuildContext context,
-    required void Function() onTap}) {
+Widget postResponseIcon({
+  required String icon,
+  String? text,
+  required BuildContext context,
+  required void Function() onTap,
+  Color color = Colors.grey,
+}) {
   return InkWell(
     highlightColor: Colors.transparent,
     focusColor: Colors.transparent,
@@ -19,7 +21,7 @@ Widget postResponseIcon(
           width: 20,
           higth: 20,
           icon: icon,
-          color: Colors.grey,
+          color: color,
         ),
         SizedBox(width: 5),
         if (text != null)
