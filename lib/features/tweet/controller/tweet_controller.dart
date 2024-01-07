@@ -113,8 +113,20 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
       final data = GetTweetModel.fromMap(r.data, null);
       return data;
     });
+  }
 
-    // print(res.data);
+  Future<List<String>?> _uploadReTweetImage(
+      {required List<io.File> Images}) async {
+    final res = await _storageAPI.uploadImagesList(images: Images);
+
+    return res.fold(
+      (l) {
+        state = false;
+        UshowToast(text: l.error);
+        return null;
+      },
+      (r) => r,
+    );
   }
 
   void reTweet({
@@ -126,17 +138,13 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
     state = true;
 
     if (currentUserTweetImages != null) {
-      final res1 =
-          await _storageAPI.uploadImagesList(images: currentUserTweetImages);
-      res1.fold((l) {
-        state = false;
-        UshowToast(text: l.error);
-        state = false;
-      }, (r) async {
+      final reTweetImageLinks =
+          await _uploadReTweetImage(Images: currentUserTweetImages);
+      if (reTweetImageLinks != null) {
         final tweetModel = CreateTweetModel(
           text: currentUserTweetText ?? '',
           uid: currentUser.uid,
-          imageLinks: r,
+          imageLinks: reTweetImageLinks,
           tweetType: TweetType.text,
           likeIDs: [],
           retweetOf: tweet.id,
@@ -157,15 +165,12 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
           UshowToast(text: l.error);
         }, (r) {
           state = false;
-          state = false;
           nav.currentState!
               .pushAndRemoveUntil(Application.route(), (route) => false);
           UshowToast(text: 'ReTweeted!');
         });
-      });
+      }
     } else {
-      // final hashtags = _getHashtagFromTweetText(text);
-
       final tweetModel = CreateTweetModel(
         text: currentUserTweetText ?? '',
         uid: currentUser.uid,

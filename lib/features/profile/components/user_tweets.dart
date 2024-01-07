@@ -28,13 +28,13 @@ class UserTweet extends ConsumerWidget {
 
                   return tweet.retweetOf != null
                       ? RetweetedTweetCard(
-                          screenForHeroTag: 'ProfileReTweet',
+                          screenForHeroTag: 'ProfileReTweet${index}',
                           tweet: tweet,
                           canTapAvatar: false,
                           currentUser: _currentUserP!,
                         )
                       : TweetCard(
-                          screenForHeroTag: 'ProfileTweet',
+                          screenForHeroTag: 'ProfileTweet${index}',
                           tweet: tweet,
                           canTapAvatar: false,
                           currentUser: _currentUserP!,

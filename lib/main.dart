@@ -12,7 +12,7 @@ import 'package:twitter_x/features/auth/view/signUp_dashboard_view.dart';
 import 'theme/theme_data.dart';
 
 void main() {
-  BackgroundIsolateBinaryMessenger.ensureInitialized;
+  // BackgroundIsolateBinaryMessenger.ensureInitialized;
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

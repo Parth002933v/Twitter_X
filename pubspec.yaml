@@ -53,12 +53,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_native_splash: ^2.3.8
-  flutter_launcher_icons: "^0.13.1"
+  flutter_launcher_icons:
 
 
 flutter_launcher_icons:
   #  android: "tweeter x"
-  ios: true
+  ios: false
+  android: true
   image_path: "assets/icons/x1.png"
   min_sdk_android: 21
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/src/consumer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:twitter_x/common/common.dart';
 import 'package:twitter_x/core/core.dart';
+import 'package:twitter_x/features/auth/controller/auth_controller.dart';
 import 'package:twitter_x/features/profile/view/edit_profile.dart';
 import 'package:twitter_x/model/model.dart';
 import 'package:twitter_x/theme/theme.dart';
@@ -11,6 +13,7 @@ Column userDetail({
   required BuildContext context,
   required UserModel ProfileData,
   UserModel? currentUser,
+  required WidgetRef ref,
 }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +39,14 @@ Column userDetail({
                 text: currentUser.following.contains(ProfileData.uid)
                     ? "Following"
                     : "Follow",
-                onTap: () {},
+                onTap: () {
+                  ref
+                      .read(authControllerProvider.notifier)
+                      .updateFollowerFollowing(
+                        ProfileData: ProfileData,
+                        currentUser: currentUser,
+                      );
+                },
               ),
       ),
       Text(
@@ -54,11 +64,12 @@ Column userDetail({
             .copyWith(color: PallateColor.unselectColor),
       ),
       SizedBox(height: 15.h),
-      Text(
-        ProfileData.bio,
-        style: Theme.of(context).textTheme.bodyMedium!,
-      ),
-      SizedBox(height: 20.h),
+      if (ProfileData.bio.trim().isNotEmpty)
+        Text(
+          ProfileData.bio,
+          style: Theme.of(context).textTheme.bodyMedium!,
+        ),
+      if (ProfileData.bio.trim().isNotEmpty) SizedBox(height: 20.h),
       Row(
         // alignment: WrapAlignment.center,
         children: [

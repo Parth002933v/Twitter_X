@@ -5,7 +5,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:twitter_x/core/core.dart';
 
 final authAPIProvider = Provider<AuthAPI>((ref) {
-  final account = ref.watch(accountProvider);
+  final account = ref.watch(appwriteAccountProvider);
   return AuthAPI(account: account);
 });
 

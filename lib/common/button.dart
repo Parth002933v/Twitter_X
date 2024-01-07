@@ -103,12 +103,12 @@ class RoundedButton extends StatelessWidget {
           icon == null
               ? const SizedBox()
               : svgIcon(icon: AssetsConstants.google, width: 25.w, higth: 25.h),
-          SizedBox(width: 10.w),
+          SizedBox(width: 10),
           Text(
             text,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  fontSize: 19.sp,
+                  fontSize: 19,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),

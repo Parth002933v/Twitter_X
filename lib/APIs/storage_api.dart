@@ -7,7 +7,7 @@ import 'package:twitter_x/constants/constants.dart';
 import 'package:twitter_x/core/core.dart';
 
 final storageAPIProvider = Provider((ref) {
-  final storage = ref.watch(storageProvider);
+  final storage = ref.watch(appwriteStorageProvider);
   return StorageAPI(storage: storage);
 });
 

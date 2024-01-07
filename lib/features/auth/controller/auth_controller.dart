@@ -54,6 +54,34 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
         _storageAPI = storageAPI,
         super(false);
 
+  updateFollowerFollowing({
+    required UserModel currentUser,
+    required UserModel ProfileData,
+  }) async {
+    List<String> following = currentUser.following;
+    if (currentUser.following.contains(ProfileData.uid)) {
+      following.remove(ProfileData.uid);
+    } else {
+      following.insert(0, ProfileData.uid);
+    }
+
+    _userAPI.updateFollowing(
+      documentId: currentUser.uid,
+      userModel: currentUser.copyWith(following: following),
+    );
+
+    List<String> follower = ProfileData.follower;
+    if (ProfileData.follower.contains(currentUser.uid)) {
+      follower.remove(currentUser.uid);
+    } else {
+      follower.insert(0, currentUser.uid);
+    }
+    _userAPI.updateFollower(
+      userModel: ProfileData.copyWith(follower: follower),
+      profileID: ProfileData.uid,
+    );
+  }
+
   Future<String?> _uploadProfileImage(pick.XFile Image) async {
     final bannerRes = await _storageAPI.uploadImage(image: io.File(Image.path));
 
@@ -63,9 +91,7 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
         UshowToast(text: l.error);
         return null;
       },
-      (r) {
-        return r;
-      },
+      (r) => r,
     );
   }
 

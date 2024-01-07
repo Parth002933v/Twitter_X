@@ -9,7 +9,7 @@ import 'package:twitter_x/core/core.dart';
 import 'package:twitter_x/model/model.dart';
 
 final tweetAPIProvider = Provider((ref) {
-  final database = ref.watch(databaseProvider);
+  final database = ref.watch(appwriteDatabaseProvider);
   return TweetAPI(database: database);
 });
 
@@ -82,7 +82,6 @@ class TweetAPI implements ITweetAPI {
         collectionId: AppWriteConstants.tweetCollectionID,
         documentId: documentId,
       );
-      log('load retweet');
       return Right(list);
     } on AppwriteException catch (e, s) {
       return Left(Failure(e.message.toString(), s.toString()));
@@ -101,6 +100,7 @@ class TweetAPI implements ITweetAPI {
         Query.equal("uid", [userID])
       ],
     );
+
     return list.documents;
   }
 
@@ -118,4 +118,6 @@ class TweetAPI implements ITweetAPI {
       return Left(Failure(e.toString(), s.toString()));
     }
   }
+
+  test() {}
 }

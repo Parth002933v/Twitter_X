@@ -6,22 +6,36 @@ import 'package:twitter_x/constants/constants.dart';
 import 'package:twitter_x/core/core.dart';
 import 'package:twitter_x/model/model.dart';
 
-final UserAPIProvider = Provider((ref) {
-  final database = ref.watch(databaseProvider);
-  return UserAPI(database: database);
+final latestUserProfileProvider = StreamProvider((ref) {
+  final userAPIP = ref.watch(UserAPIProvider);
+  return userAPIP._getLatestUserProfileData();
 });
 
-abstract class IUserAPI {
+final UserAPIProvider = Provider((ref) {
+  final database = ref.watch(appwriteDatabaseProvider);
+  final realtime = ref.watch(appwriteRealtimeProvider);
+  return UserAPI(
+    database: database,
+    realtime: realtime,
+  );
+});
+
+abstract class _IUserAPI {
   FutureEitherVoid saveUser({required UserModel userModel});
   Future<Document> getUserDetail(String uid);
   FutureEitherVoid updateProfile({required UserModel userModel});
+  Stream<RealtimeMessage> _getLatestUserProfileData();
+  // updateFollower({required String documentId, required UserModel userModel});
 }
 
-class UserAPI implements IUserAPI {
+class UserAPI implements _IUserAPI {
   final Databases _databases;
+  final Realtime _realtime;
   UserAPI({
     required Databases database,
-  }) : _databases = database;
+    required Realtime realtime,
+  })  : _databases = database,
+        _realtime = realtime;
 
   @override
   FutureEitherVoid saveUser({required UserModel userModel}) async {
@@ -31,15 +45,15 @@ class UserAPI implements IUserAPI {
         collectionId: AppWriteConstants.UserCollectionID,
         documentId: userModel.uid,
         data: userModel.toMap(),
-        permissions: [
-          // Permission.write(Role.any()),
-          Permission.read(Role.any()),
-          Permission.update(Role.any()),
-          // Permission.delete(Role.any()),
-          // Permission.read(Role.user(userModel.uid)),
-          // Permission.update(Role.user(userModel.uid)),
-          // Permission.delete(Role.user(userModel.uid)),
-        ],
+        // permissions: [
+        // // Permission.write(Role.any()),
+        // Permission.read(Role.any()),
+        // Permission.update(Role.any()),
+        // Permission.delete(Role.any()),
+        // Permission.read(Role.user(userModel.uid)),
+        // Permission.update(Role.user(userModel.uid)),
+        // Permission.delete(Role.user(userModel.uid)),
+        // ],
       );
 
       return Right(null);
@@ -63,6 +77,13 @@ class UserAPI implements IUserAPI {
   }
 
   @override
+  Stream<RealtimeMessage> _getLatestUserProfileData() {
+    return _realtime.subscribe([
+      "databases.${AppWriteConstants.databaseID}.collections.${AppWriteConstants.UserCollectionID}.documents"
+    ]).stream;
+  }
+
+  @override
   FutureEitherVoid updateProfile({required UserModel userModel}) async {
     try {
       await _databases.updateDocument(
@@ -80,5 +101,27 @@ class UserAPI implements IUserAPI {
     } catch (e, stack) {
       return Left(Failure(e.toString(), stack.toString()));
     }
+  }
+
+  updateFollowing({required String documentId, required UserModel userModel}) {
+    _databases.updateDocument(
+      databaseId: AppWriteConstants.databaseID,
+      collectionId: AppWriteConstants.UserCollectionID,
+      documentId: documentId,
+      data: {
+        'following': userModel.following,
+      },
+    );
+  }
+
+  updateFollower({required String profileID, required UserModel userModel}) {
+    _databases.updateDocument(
+      databaseId: AppWriteConstants.databaseID,
+      collectionId: AppWriteConstants.UserCollectionID,
+      documentId: profileID,
+      data: {
+        'follower': userModel.following,
+      },
+    );
   }
 }

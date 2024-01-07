@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -133,8 +134,15 @@ ClipRRect ImageGrid({
             child: CachedNetworkImage(
               // maxHeightDiskCache: 350.w.toInt(),
               // maxWidthDiskCache: 350.w.toInt(),
-              filterQuality: FilterQuality.none,
+              progressIndicatorBuilder: (context, url, progress) {
+                return CircularProgressIndicator(
+                  value: progress.downloaded.toDouble(),
+                );
+              },
+              filterQuality: FilterQuality.low,
               fit: BoxFit.cover,
+              fadeInDuration: Duration(milliseconds: 500),
+              fadeOutDuration: Duration(milliseconds: 500),
               errorWidget: (context, url, error) {
                 return svgIcon(icon: AssetsConstants.profile);
               },
