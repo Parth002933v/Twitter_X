@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TweetContentHandler extends StatelessWidget {
   final String text;
@@ -29,6 +30,11 @@ class TweetContentHandler extends StatelessWidget {
         style: linkStyle,
         recognizer: TapGestureRecognizer()
           ..onTap = () {
+            launchUrl(
+              Uri.parse(match.group(0)!),
+              mode: LaunchMode.externalNonBrowserApplication,
+              webOnlyWindowName: '_blank',
+            );
             print('Link tapped: ${match.group(0)}');
           },
       ));

@@ -55,9 +55,9 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
   }) async {
     final res = await _tweetAPI.deleteTweet(documentId: documentId);
     res.fold(
-      (l) => UshowToast(text: l.error),
+      (l) => UShowToast(text: l.error),
       (r) {
-        UshowToast(text: "Tweet has been deleted");
+        UShowToast(text: "Tweet has been deleted");
         _storageAPI.deleteImage(fileIds: currentTweet.imageLinks);
       },
     );
@@ -122,7 +122,7 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
     return res.fold(
       (l) {
         state = false;
-        UshowToast(text: l.error);
+        UShowToast(text: l.error);
         return null;
       },
       (r) => r,
@@ -162,12 +162,12 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
 
         res2.fold((l) {
           state = false;
-          UshowToast(text: l.error);
+          UShowToast(text: l.error);
         }, (r) {
           state = false;
           nav.currentState!
               .pushAndRemoveUntil(Application.route(), (route) => false);
-          UshowToast(text: 'ReTweeted!');
+          UShowToast(text: 'ReTweeted!');
         });
       }
     } else {
@@ -192,10 +192,10 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
 
       res2.fold((l) {
         state = false;
-        UshowToast(text: l.error);
+        UShowToast(text: l.error);
       }, (r) {
         state = false;
-        UshowToast(text: 'ReTweeted!');
+        UShowToast(text: 'ReTweeted!');
       });
     }
   }
@@ -218,7 +218,7 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
 
   void shareTweet({required List<io.File> images, required String text}) {
     if (text.isEmpty) {
-      UshowToast(text: 'Please enter text');
+      UShowToast(text: 'Please enter text');
     }
 
     if (images.isNotEmpty && text.isNotEmpty) {
@@ -238,7 +238,7 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
 
     res1.fold((l) {
       state = false;
-      UshowToast(text: l.error);
+      UShowToast(text: l.error);
     }, (r) async {
       final hashtags = _getHashtagFromTweetText(text);
 
@@ -261,7 +261,7 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
 
       res2.fold((l) {
         state = false;
-        UshowToast(text: l.error);
+        UShowToast(text: l.error);
       }, (r) {
         state = false;
         nav.currentState!
@@ -295,7 +295,7 @@ class _TweetControllerNotifier extends StateNotifier<bool> {
     res.fold(
       (l) {
         state = false;
-        UshowToast(text: l.error);
+        UShowToast(text: l.error);
       },
       (r) {
         state = false;

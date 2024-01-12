@@ -134,11 +134,7 @@ ClipRRect ImageGrid({
             child: CachedNetworkImage(
               // maxHeightDiskCache: 350.w.toInt(),
               // maxWidthDiskCache: 350.w.toInt(),
-              progressIndicatorBuilder: (context, url, progress) {
-                return CircularProgressIndicator(
-                  value: progress.downloaded.toDouble(),
-                );
-              },
+
               filterQuality: FilterQuality.low,
               fit: BoxFit.cover,
               fadeInDuration: Duration(milliseconds: 500),

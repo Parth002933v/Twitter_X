@@ -26,6 +26,8 @@ abstract class _IUserAPI {
   FutureEitherVoid updateProfile({required UserModel userModel});
   Stream<RealtimeMessage> _getLatestUserProfileData();
   // updateFollower({required String documentId, required UserModel userModel});
+
+  Future<List<Document>> serachUser({required String name});
 }
 
 class UserAPI implements _IUserAPI {
@@ -45,15 +47,6 @@ class UserAPI implements _IUserAPI {
         collectionId: AppWriteConstants.UserCollectionID,
         documentId: userModel.uid,
         data: userModel.toMap(),
-        // permissions: [
-        // // Permission.write(Role.any()),
-        // Permission.read(Role.any()),
-        // Permission.update(Role.any()),
-        // Permission.delete(Role.any()),
-        // Permission.read(Role.user(userModel.uid)),
-        // Permission.update(Role.user(userModel.uid)),
-        // Permission.delete(Role.user(userModel.uid)),
-        // ],
       );
 
       return Right(null);
@@ -123,5 +116,16 @@ class UserAPI implements _IUserAPI {
         'follower': userModel.following,
       },
     );
+  }
+
+  Future<List<Document>> serachUser({required String name}) async {
+    final res = await _databases.listDocuments(
+      databaseId: AppWriteConstants.databaseID,
+      collectionId: AppWriteConstants.UserCollectionID,
+      queries: [
+        Query.search('name', name),
+      ],
+    );
+    return res.documents;
   }
 }

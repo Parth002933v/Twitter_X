@@ -22,6 +22,7 @@ final authControllerProvider =
     storageAPI: storageAPI,
   );
 });
+
 final currentUserAccountProvider = FutureProvider((ref) {
   final authController = ref.watch(authControllerProvider.notifier);
   return authController._currentUser();
@@ -88,7 +89,7 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
     return bannerRes.fold(
       (l) {
         state = false;
-        UshowToast(text: l.error);
+        UShowToast(text: l.error);
         return null;
       },
       (r) => r,
@@ -100,9 +101,9 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
     res.fold(
       (l) {
         state = false;
-        UshowToast(text: l.error);
+        UShowToast(text: l.error);
       },
-      (r) => UshowToast(text: "Profile updated!"),
+      (r) => UShowToast(text: "Profile updated!"),
     );
     state = false;
   }
@@ -174,18 +175,18 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
     state = true;
 
     if (password != confirmPassword) {
-      UshowToast(text: "Confirm password is not matched");
+      UShowToast(text: "Confirm password is not matched");
       state = false;
     } else {
       final res = await _authAPI.signUpWithEmail(
         email: email,
         password: password,
-        username: username.trim().isEmpty ? UgetEmailUsername(email) : username,
+        username: username.trim().isEmpty ? UGetEmailUsername(email) : username,
       );
       res.fold((l) {
         state = false;
 
-        return UshowToast(text: l.error);
+        return UShowToast(text: l.error);
       }, (r) async {
         print(r);
         final user = UserModel(
@@ -208,12 +209,12 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
           (l) {
             state = false;
 
-            return UshowToast(text: l.error);
+            return UShowToast(text: l.error);
           },
           (r) {
             state = false;
             nav.currentState!.pushReplacement(SignInView.route());
-            return UshowToast(
+            return UShowToast(
                 text: 'Account created successfully! Please login');
           },
         );
@@ -229,18 +230,18 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
   }) async {
     state = true;
     if (password != confirmPassword) {
-      UshowToast(text: "Confirm password is not matched");
+      UShowToast(text: "Confirm password is not matched");
       state = false;
     } else {
       final res = await _authAPI.signUpWithEmail(
         email: phone,
         password: password,
-        username: username.trim().isEmpty ? UgetEmailUsername(phone) : username,
+        username: username.trim().isEmpty ? UGetEmailUsername(phone) : username,
       );
       res.fold((l) {
         state = false;
 
-        return UshowToast(text: l.error);
+        return UShowToast(text: l.error);
       }, (r) async {
         print(r);
         final user = UserModel(
@@ -263,12 +264,12 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
           (l) {
             state = false;
 
-            return UshowToast(text: l.error);
+            return UShowToast(text: l.error);
           },
           (r) {
             state = false;
             nav.currentState!.pushReplacement(SignInView.route());
-            return UshowToast(
+            return UShowToast(
                 text: 'Account created successfully! Please login');
           },
         );
@@ -287,7 +288,7 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
     );
     state = false;
     res.fold((l) {
-      return UshowToast(text: l.error);
+      return UShowToast(text: l.error);
     }, (r) {
       _ref.refresh(currentUserAccountProvider);
 
@@ -300,7 +301,7 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
     state = true;
     final res = await _authAPI.googleSignin();
 
-    res.fold((l) => UshowToast(text: l.error.toString()), (r) => null);
+    res.fold((l) => UShowToast(text: l.error.toString()), (r) => null);
     state = false;
   }
 
@@ -310,7 +311,7 @@ class _AuthControllerNotifier extends StateNotifier<bool> {
     res.fold((l) {
       state = false;
 
-      return UshowToast(text: l.error);
+      return UShowToast(text: l.error);
     }, (r) {
       state = false;
       nav.currentState!

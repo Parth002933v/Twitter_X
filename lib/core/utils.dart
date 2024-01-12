@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
-void UshowToast({String text = "enter your msg"}) {
+void UShowToast({String text = "enter your msg"}) {
   Fluttertoast.showToast(
     msg: text,
     toastLength: Toast.LENGTH_SHORT,
@@ -17,12 +17,12 @@ void UshowToast({String text = "enter your msg"}) {
   );
 }
 
-String UgetEmailUsername(String email) {
+String UGetEmailUsername(String email) {
   final StringList = email.split('@');
   return StringList.first;
 }
 
-Future<List<File>> UpickMultipleImages() async {
+Future<List<File>> UPickMultipleImages() async {
   List<File> images = [];
   final imagePicker = ImagePicker();
 
@@ -33,16 +33,15 @@ Future<List<File>> UpickMultipleImages() async {
       if (images.length < 4) {
         images.add(File(image.path));
       } else {
-        UshowToast(text: "You only allow to pick 4 images");
+        UShowToast(text: "You only allow to pick 4 images");
         break;
       }
     }
   }
-// decodeImageFromList(bytes)
   return images;
 }
 
-Future<XFile?> UpickImage() async {
+Future<XFile?> UPickImage() async {
   final imagePicker = ImagePicker();
 
   final pickedImage = await imagePicker.pickImage(source: ImageSource.gallery);

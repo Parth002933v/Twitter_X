@@ -42,7 +42,7 @@ class UserProfileView extends ConsumerWidget {
                 return [
                   SliverPersistentHeader(
                     delegate: CustomSliverAppbar(
-                      expandedHegth: 170.w,
+                      expandedHegth: 170,
                       userDetailData: userDetailData,
                       ref: ref,
                     ),

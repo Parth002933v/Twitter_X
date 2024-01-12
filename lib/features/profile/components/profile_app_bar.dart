@@ -150,7 +150,7 @@ Widget _backgroundImage({
     actions: [
       iconButton(
         icon: Icons.search_rounded,
-        onTap: () => UshowToast(text: "Taped"),
+        onTap: () => UShowToast(text: "Taped"),
       ),
       iconButton(
         icon: Icons.more_vert,
@@ -173,8 +173,8 @@ Positioned _profilePic({
 
     left: 20,
     child: Container(
-      width: radius < 170 && radius > 90 ? radius / 2 + 4 : 49,
-      height: radius < 170 && radius > 90 ? radius / 2 + 4 : 49,
+      width: radius < 180 && radius > 100 ? radius / 2 + 4 : 49,
+      height: radius < 180 && radius > 100 ? radius / 2 + 4 : 49,
       decoration: BoxDecoration(
         color: profileImage.trim().isEmpty ? Colors.blue : Colors.transparent,
         image: profileImage.trim().isEmpty
