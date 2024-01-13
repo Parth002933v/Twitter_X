@@ -1,4 +1,4 @@
-# twitter_x_three
+# Twitter X
 
 A new Flutter project.
 
