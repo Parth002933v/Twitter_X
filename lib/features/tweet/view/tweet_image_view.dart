@@ -44,12 +44,12 @@ class _TweetImageViewState extends ConsumerState<TweetImageView> {
   void _toggleOverlayVisibility() {
     setState(() {
       _isOverlayVisible = !_isOverlayVisible;
-      if (!_isOverlayVisible) {
+      // if (!_isOverlayVisible) {
 
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-      } else {
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-      }
+      //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+      // } else {
+      //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      // }
     });
   }
 
