@@ -45,11 +45,9 @@ class _TweetImageViewState extends ConsumerState<TweetImageView> {
     setState(() {
       _isOverlayVisible = !_isOverlayVisible;
       if (!_isOverlayVisible) {
-        // Hide the status and navigation bars
 
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       } else {
-        // Show the status and navigation bars
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       }
     });
