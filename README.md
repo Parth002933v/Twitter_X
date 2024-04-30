@@ -35,6 +35,8 @@ https://github.com/Parth002933v/Twitter_X/assets/140066704/b0c2960c-592a-45b8-98
 
 In near future I'm planning to add more features like
 
+=> try to implement my own backend using Node js
+
 =>Comments
 
 =>see tweets of following users
